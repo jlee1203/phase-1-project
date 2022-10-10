@@ -2,17 +2,23 @@
 const pokeDex = document.createElement('div');
 const pokeCard = document.createElement('div');
 
-const pokeName = document.createElement('h2');
-const pokeId = document.createElement('id');
-const pokeImage = document.createElement('img');
-const pokeType = document.createElement('h3');
-const pokeHeight = document.createElement('id');
-const pokeWeight = document.createElement('id');
+const pokeName = document.createElement('div');
+const pokeId = document.createElement('div');
+const pokeImage = document.createElement('div');
+const pokeType = document.createElement('div');
+const pokeHeight = document.createElement('div');
+const pokeWeight = document.createElement('div');
+
+fetch("https://pokeapi.co/api/v2/pokemon/")
+.then(resp => resp.json())
+.then(pokemons => {
+    console.log(pokemons)
+});
 
 
 
 // Constants, helper functions, URL, etc.
-const base_URL = "https://pokeapi.co/api/v2/";
+//const base_URL = "https://pokeapi.co/api/v2/pokemon";
 
 //The callback functions that will preform what I want for the event listeners.
 
@@ -22,3 +28,6 @@ const base_URL = "https://pokeapi.co/api/v2/";
 // - Will I need to use different api endpoints for different info on each pokemon?
 // - An event for toggling night mode?
 // - Can I search a pokemon, then "like or catch" instance of, to save to my pokedex?
+// - Adding in battle stats? (ATT/DEF/STAMINA)
+// - Pokemon not yet added in, show up as ? After searched, liked to add to pokedex, then name/image pop up.
+// - Background color changes to match with pokemon type?
