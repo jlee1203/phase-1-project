@@ -5,43 +5,53 @@ const pokeCard = document.createElement('div');
     
 const pokeName = document.createElement('h1');
 const pokeId = document.createElement('p');
-const pokeImage1 = document.createElement('img');
-const pokeImage2 = document.createElement('img');
+const pokeFrontImage = document.createElement('img');
+const pokeBackImage = document.createElement('img');
+const pokeTypes = document.createElement('p');
 const pokeHeight = document.createElement('p');
 const pokeWeight = document.createElement('p');
 
+
 //Content/attributes for each newly created DOM element.
-pokeName.textContent = data.name;
+pokeName.textContent = capitalizePokemonName(data.name);
 pokeId.textContent = data.id;
-pokeImage1.src = data.sprites.front_default;
-pokeImage2.src = data.sprites.back_default;
+pokeFrontImage.src = data.sprites.front_default;
+pokeBackImage.src = data.sprites.back_default;
 pokeHeight.textContent = data.height;
 pokeWeight.textContent = data.weight;
-
+pokeTypes.textContent = data.types.map((type) => type.type.name).join(', ');
 
 //Appending all the correctly nested elements within each parent node. Not seen in HTML file, the created 
 //elements, used js to apply dom manipulation for insertion of each element.
 document.body.appendChild(pokeDex);    
 pokeDex.append(pokeCard);
-pokeCard.append(pokeName, pokeId, pokeImage1, pokeImage2, pokeHeight, pokeWeight);
+pokeCard.append(pokeName, pokeTypes, pokeId, pokeFrontImage, pokeBackImage, pokeHeight, pokeWeight);
 }
 
-const base_URL = `https://pokeapi.co/api/v2/pokemon/1`;
-fetch(base_URL)
-.then(resp => resp.json())
-.then(data => {
-    console.log(data)
-    renderPokemon(data)
-});  
 
+// const capitalize = str => str[0].toUpperCase() + str.substr(1);
 
+function fetchingAllPokemon(){
+    for (i = 1; i < 1154; i++){
+        const base_URL = `https://pokeapi.co/api/v2/pokemon/${i}`;
+        fetch(base_URL)
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data)
+                renderPokemon(data)
+        }); 
+    }
+}
 
-
-
+fetchingAllPokemon();
 
 
 // Constants, helper functions, URL, etc.
-//const base_URL = "https://pokeapi.co/api/v2/pokemon";
+function capitalizePokemonName(string){
+    return string[0].toUpperCase() + string.slice(1);
+}
+// const capitalize = str => str[0].toUpperCase() + str.substr(1); <- just another way to write the function
+
 
 //The callback functions that will preform what I want for the event listeners.
 
