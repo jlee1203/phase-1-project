@@ -14,11 +14,11 @@ const pokeWeight = document.createElement('p');
 
 //Content/attributes for each newly created DOM element.
 pokeName.textContent = capitalizePokemonName(data.name);
-pokeId.textContent = data.id;
+pokeId.textContent = pokemonId(data);
 pokeFrontImage.src = data.sprites.front_default;
 pokeBackImage.src = data.sprites.back_default;
-pokeHeight.textContent = data.height;
-pokeWeight.textContent = data.weight;
+pokeHeight.textContent = `Height: ${data.height} m`;
+pokeWeight.textContent = `Weight: ${data.weight} kg`;
 pokeTypes.textContent = data.types.map((type) => type.type.name).join(', ');
 
 //Appending all the correctly nested elements within each parent node. Not seen in HTML file, the created 
@@ -49,6 +49,17 @@ fetchingAllPokemon();
 // Constants, helper functions, URL, etc.
 function capitalizePokemonName(string){
     return string[0].toUpperCase() + string.slice(1);
+}
+
+function pokemonId(data){
+if(data.id < 10){
+    return `#00${data.id}`
+} else{
+    if(data.id < 100){
+        return `#0${data.id}`
+    }else{
+        return `#${data.id}`
+    }}
 }
 // const capitalize = str => str[0].toUpperCase() + str.substr(1); <- just another way to write the function
 
