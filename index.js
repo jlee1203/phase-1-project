@@ -33,7 +33,7 @@ pokeCard.append(pokeName, pokeTypes, pokeId, pokeFrontImage, pokeHeight, pokeWei
 // const capitalize = str => str[0].toUpperCase() + str.substr(1);
 
  async function fetchingAllPokemon(){
-    for (i = 1; i <= 900; i++){
+    for (i = 1; i < 899; i++){
         const base_URL = `https://pokeapi.co/api/v2/pokemon/${i}`;
         await fetch(base_URL)
             .then(resp => resp.json())
