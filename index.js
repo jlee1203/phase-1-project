@@ -1,4 +1,5 @@
 //DOM Elements creation
+
 function renderPokemon(data){
 const pokeDex = document.createElement('div');
 const pokeCard = document.createElement('div');
@@ -6,7 +7,7 @@ const pokeCard = document.createElement('div');
 const pokeName = document.createElement('h1');
 const pokeId = document.createElement('p');
 const pokeFrontImage = document.createElement('img');
-const pokeBackImage = document.createElement('img');
+// const pokeBackImage = document.createElement('img');
 const pokeTypes = document.createElement('p');
 const pokeHeight = document.createElement('p');
 const pokeWeight = document.createElement('p');
@@ -16,7 +17,7 @@ const pokeWeight = document.createElement('p');
 pokeName.textContent = capitalizePokemonName(data.name);
 pokeId.textContent = pokemonId(data);
 pokeFrontImage.src = data.sprites.front_default;
-pokeBackImage.src = data.sprites.back_default;
+// pokeBackImage.src = data.sprites.back_default;
 pokeHeight.textContent = `Height: ${data.height} m`;
 pokeWeight.textContent = `Weight: ${data.weight} kg`;
 pokeTypes.textContent = data.types.map((type) => type.type.name).join(', ');
@@ -25,28 +26,30 @@ pokeTypes.textContent = data.types.map((type) => type.type.name).join(', ');
 //elements, used js to apply dom manipulation for insertion of each element.
 document.body.appendChild(pokeDex);    
 pokeDex.append(pokeCard);
-pokeCard.append(pokeName, pokeTypes, pokeId, pokeFrontImage, pokeBackImage, pokeHeight, pokeWeight);
+pokeCard.append(pokeName, pokeTypes, pokeId, pokeFrontImage, pokeHeight, pokeWeight);
 }
 
 
 // const capitalize = str => str[0].toUpperCase() + str.substr(1);
 
-function fetchingAllPokemon(){
-    for (i = 1; i < 900; i++){
+ async function fetchingAllPokemon(){
+    for (i = 1; i <= 900; i++){
         const base_URL = `https://pokeapi.co/api/v2/pokemon/${i}`;
-        fetch(base_URL)
+        await fetch(base_URL)
             .then(resp => resp.json())
             .then(data => {
                 console.log(data)
-                renderPokemon(data)
-        }); 
+                renderPokemon(data);
+        }).catch(error => {
+            console.log(`My error: ${error}`)
+        });
     }
 }
 
 fetchingAllPokemon();
 
 
-// Constants, helper functions, URL, etc.
+//Functions
 function capitalizePokemonName(string){
     return string[0].toUpperCase() + string.slice(1);
 }
@@ -60,7 +63,7 @@ if(data.id < 10){
     }else{
         return `#${data.id}`
     }}
-}
+};
 // const capitalize = str => str[0].toUpperCase() + str.substr(1); <- just another way to write the function
 
 
