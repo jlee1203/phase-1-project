@@ -27,7 +27,7 @@ pokeDex.append(pokeCard);
 pokeCard.append(pokeName, pokeTypes, pokeId, pokeFrontImage, pokeHeight, pokeWeight);
 }
 
-function displayPokemonCard(){
+function displayPokemonCard(data){
 const pokeCardInfo = document.createElement('div');
 
 const pokeImage = document.createElement('img');
@@ -42,8 +42,8 @@ pokeImage.alt = "The Shiny Version!";
 pokeAttack.textContent = data.stats[1].base_stat;
 pokeDefense.textContent = data.stats[2].base_stat;
 pokeHp.textContent = data.stats[0].base_stat;
-pokeMoves1.textContent = data.moves[0].name;
-pokeMoves2.textContent = data.moves[1].name;
+pokeMoves1.textContent = data.moves[0].move.name;
+pokeMoves2.textContent = data.moves[1].move.name;
 
 document.body.append(pokeCardInfo);
 pokeCardInfo.append(pokeImage, pokeAttack, pokeDefense, pokeHp, pokeMoves1, pokeMoves2);
