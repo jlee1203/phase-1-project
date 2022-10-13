@@ -7,7 +7,6 @@ const pokeCard = document.createElement('div');
 const pokeName = document.createElement('h1');
 const pokeId = document.createElement('p');
 const pokeFrontImage = document.createElement('img');
-// const pokeBackImage = document.createElement('img');
 const pokeTypes = document.createElement('p');
 const pokeHeight = document.createElement('p');
 const pokeWeight = document.createElement('p');
@@ -17,7 +16,6 @@ const pokeWeight = document.createElement('p');
 pokeName.textContent = capitalizePokemonName(data.name);
 pokeId.textContent = pokemonId(data);
 pokeFrontImage.src = data.sprites.front_default;
-// pokeBackImage.src = data.sprites.back_default;
 pokeHeight.textContent = `Height: ${data.height} m`;
 pokeWeight.textContent = `Weight: ${data.weight} kg`;
 pokeTypes.textContent = data.types.map((type) => type.type.name).join(', ');
@@ -29,6 +27,27 @@ pokeDex.append(pokeCard);
 pokeCard.append(pokeName, pokeTypes, pokeId, pokeFrontImage, pokeHeight, pokeWeight);
 }
 
+function displayPokemonCard(){
+const pokeCardInfo = document.createElement('div');
+
+const pokeImage = document.createElement('img');
+const pokeAttack = document.createElement('p');
+const pokeDefense = document.createElement('p');
+const pokeHp = document.createElement('p');
+const pokeMoves1 = document.createElement('p');
+const pokeMoves2 = document.createElement('p');
+
+pokeImage.src = data.sprites.front_shiny;
+pokeImage.alt = "The Shiny Version!";
+pokeAttack.textContent = data.stats[1].base_stat;
+pokeDefense.textContent = data.stats[2].base_stat;
+pokeHp.textContent = data.stats[0].base_stat;
+pokeMoves1.textContent = data.moves[0].name;
+pokeMoves2.textContent = data.moves[1].name;
+
+document.body.append(pokeCardInfo);
+pokeCardInfo.append(pokeImage, pokeAttack, pokeDefense, pokeHp, pokeMoves1, pokeMoves2);
+}
 
 // const capitalize = str => str[0].toUpperCase() + str.substr(1);
 
@@ -40,6 +59,7 @@ pokeCard.append(pokeName, pokeTypes, pokeId, pokeFrontImage, pokeHeight, pokeWei
             .then(data => {
                 console.log(data)
                 renderPokemon(data);
+                displayPokemonCard(data);
         }).catch(error => {
             console.log(`My error: ${error}`)
         });
