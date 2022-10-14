@@ -14,6 +14,11 @@ const pokeWeight = document.createElement('p');
 //Adding id's/classes to DOM elements
 // pokeDex.className = "poke-dex";
 pokeCard.className = "poke-card";
+pokeName.id = "poke-name";
+pokeId.id = "poke-id";
+pokeFrontImage.id = "poke-front-image";
+pokeHeight.id = "poke-height";
+pokeWeight.id = "poke-weight";
 
 
 
@@ -45,6 +50,12 @@ const pokeMoves2 = document.createElement('p');
 
 //Adding id's/classes to DOM elements
 pokeCardInfo.className = "pokecard-info";
+pokeImage.id = "poke-image";
+pokeAttack.id = "poke-attack";
+pokeDefense.id = "poke-defense";
+pokeHp.id = "poke-hp";
+pokeMoves1.id = "poke-move-1";
+pokeMoves2.id = "poke-move-2";
 
 pokeImage.src = data.sprites.front_shiny;
 pokeImage.alt = "The Shiny Version!";
