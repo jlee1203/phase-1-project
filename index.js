@@ -11,6 +11,11 @@ const pokeTypes = document.createElement('p');
 const pokeHeight = document.createElement('p');
 const pokeWeight = document.createElement('p');
 
+//Adding id's/classes to DOM elements
+// pokeDex.className = "poke-dex";
+pokeCard.className = "poke-card";
+
+
 
 //Content/attributes for each newly created DOM element.
 pokeName.textContent = capitalizePokemonName(data.name);
@@ -27,6 +32,7 @@ pokeDex.append(pokeCard);
 pokeCard.append(pokeName, pokeTypes, pokeId, pokeFrontImage, pokeHeight, pokeWeight);
 }
 
+//Made the function that will have all the elements and their information for the pokemon card that will pop up.
 function displayPokemonCard(data){
 const pokeCardInfo = document.createElement('div');
 
@@ -37,13 +43,16 @@ const pokeHp = document.createElement('p');
 const pokeMoves1 = document.createElement('p');
 const pokeMoves2 = document.createElement('p');
 
+//Adding id's/classes to DOM elements
+pokeCardInfo.className = "pokecard-info";
+
 pokeImage.src = data.sprites.front_shiny;
 pokeImage.alt = "The Shiny Version!";
-pokeAttack.textContent = data.stats[1].base_stat;
-pokeDefense.textContent = data.stats[2].base_stat;
-pokeHp.textContent = data.stats[0].base_stat;
+pokeAttack.textContent = `ATT: ${data.stats[1].base_stat}`;
+pokeDefense.textContent = `DEF: ${data.stats[2].base_stat}`;
+pokeHp.textContent = `HP: ${data.stats[0].base_stat}`;
 pokeMoves1.textContent = data.moves[0].move.name;
-pokeMoves2.textContent = data.moves[1].move.name;
+pokeMoves2.textContent = data.moves[5].move.name;
 
 document.body.append(pokeCardInfo);
 pokeCardInfo.append(pokeImage, pokeAttack, pokeDefense, pokeHp, pokeMoves1, pokeMoves2);
