@@ -1,7 +1,7 @@
 //DOM Elements creation
 
 function renderPokemon(data){
-const pokeDex = document.createElement('div');
+const pokeDex = document.getElementsByClassName("poke-dex");
 const pokeCard = document.createElement('div');
     
 const pokeName = document.createElement('h1');
@@ -12,14 +12,12 @@ const pokeHeight = document.createElement('p');
 const pokeWeight = document.createElement('p');
 
 //Adding id's/classes to DOM elements
-// pokeDex.className = "poke-dex";
 pokeCard.className = "poke-card";
 pokeName.id = "poke-name";
 pokeId.id = "poke-id";
 pokeFrontImage.id = "poke-front-image";
 pokeHeight.id = "poke-height";
 pokeWeight.id = "poke-weight";
-
 
 
 //Content/attributes for each newly created DOM element.
@@ -32,10 +30,11 @@ pokeTypes.textContent = data.types.map((type) => type.type.name).join(', ');
 
 //Appending all the correctly nested elements within each parent node. Not seen in HTML file, the created 
 //elements, used js to apply dom manipulation for insertion of each element.
-document.body.appendChild(pokeDex);    
-pokeDex.append(pokeCard);
+pokeDex[0].append(pokeCard);
 pokeCard.append(pokeName, pokeTypes, pokeId, pokeFrontImage, pokeHeight, pokeWeight);
 }
+   
+
 
 //Made the function that will have all the elements and their information for the pokemon card that will pop up.
 function displayPokemonCard(data){
