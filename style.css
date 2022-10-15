@@ -11,3 +11,7 @@ body {
     grid-template-columns: repeat(5, 200px);
     grid-template-rows: repeat(auto-fit);
 }
+
+/* .poke-card{
+
+} */

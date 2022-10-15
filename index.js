@@ -2,22 +2,25 @@
 
 function renderPokemon(data){
 const pokeDex = document.getElementsByClassName("poke-dex");
+
 const pokeCard = document.createElement('div');
-    
-const pokeName = document.createElement('h1');
+const pokeName = document.createElement('p');
 const pokeId = document.createElement('p');
 const pokeFrontImage = document.createElement('img');
 const pokeTypes = document.createElement('p');
 const pokeHeight = document.createElement('p');
 const pokeWeight = document.createElement('p');
+const infoButton = document.createElement("button");
 
 //Adding id's/classes to DOM elements
 pokeCard.className = "poke-card";
 pokeName.id = "poke-name";
 pokeId.id = "poke-id";
 pokeFrontImage.id = "poke-front-image";
+pokeTypes.id = "poke-types";
 pokeHeight.id = "poke-height";
 pokeWeight.id = "poke-weight";
+infoButton.id = "info-button";
 
 
 //Content/attributes for each newly created DOM element.
@@ -27,11 +30,18 @@ pokeFrontImage.src = data.sprites.front_default;
 pokeHeight.textContent = `Height: ${data.height} m`;
 pokeWeight.textContent = `Weight: ${data.weight} kg`;
 pokeTypes.textContent = data.types.map((type) => type.type.name).join(', ');
+infoButton.textContent = "More Info!";
+form.placeholder = "Search Pokemon...";
+
+//Event Listeners
+infoButton.addEventListener('click', clickEventCallback);
+form.addEventListener('submit', submitEventCallback);
+
 
 //Appending all the correctly nested elements within each parent node. Not seen in HTML file, the created 
 //elements, used js to apply dom manipulation for insertion of each element.
 pokeDex[0].append(pokeCard);
-pokeCard.append(pokeName, pokeTypes, pokeId, pokeFrontImage, pokeHeight, pokeWeight);
+pokeCard.append(pokeName, pokeTypes, pokeId, pokeFrontImage, pokeHeight, pokeWeight, infoButton);
 }
    
 
@@ -68,6 +78,9 @@ document.body.append(pokeCardInfo);
 pokeCardInfo.append(pokeImage, pokeAttack, pokeDefense, pokeHp, pokeMoves1, pokeMoves2);
 }
 
+
+
+
 // const capitalize = str => str[0].toUpperCase() + str.substr(1);
 
  async function fetchingAllPokemon(){
@@ -103,10 +116,19 @@ if(data.id < 10){
         return `#${data.id}`
     }}
 };
+
+
+
+function clickEventCallback(){
+    console.log("I was clicked!");
+}
+
+function submitEventCallback(e){
+    e.preventDefault();
+    console.log(submitEventCallback);
+    
+}
 // const capitalize = str => str[0].toUpperCase() + str.substr(1); <- just another way to write the function
-
-
-//The callback functions that will preform what I want for the event listeners.
 
 
 //Questions/Ideas/Things to Not Forget
