@@ -31,12 +31,10 @@ pokeHeight.textContent = `Height: ${data.height} m`;
 pokeWeight.textContent = `Weight: ${data.weight} kg`;
 pokeTypes.textContent = data.types.map((type) => type.type.name).join(', ');
 infoButton.textContent = "More Info!";
-form.placeholder = "Search Pokemon...";
 
 //Event Listeners
 infoButton.addEventListener('click', clickEventCallback);
-form.addEventListener('submit', submitEventCallback);
-
+pokeform.addEventListener('submit', searchPokemon);
 
 //Appending all the correctly nested elements within each parent node. Not seen in HTML file, the created 
 //elements, used js to apply dom manipulation for insertion of each element.
@@ -84,7 +82,7 @@ pokeCardInfo.append(pokeImage, pokeAttack, pokeDefense, pokeHp, pokeMoves1, poke
 // const capitalize = str => str[0].toUpperCase() + str.substr(1);
 
  async function fetchingAllPokemon(){
-    for (i = 1; i < 899; i++){
+    for (i = 1; i < 30; i++){
         const base_URL = `https://pokeapi.co/api/v2/pokemon/${i}`;
         await fetch(base_URL)
             .then(resp => resp.json())
@@ -121,11 +119,13 @@ if(data.id < 10){
 
 function clickEventCallback(){
     console.log("I was clicked!");
+
 }
 
-function submitEventCallback(e){
+function searchPokemon(e){
     e.preventDefault();
-    console.log(submitEventCallback);
+    
+    console.log(searchPokemon);
     
 }
 // const capitalize = str => str[0].toUpperCase() + str.substr(1); <- just another way to write the function

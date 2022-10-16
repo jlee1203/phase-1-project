@@ -6,15 +6,16 @@
     </head>
     <body>
         <h1>James' PokeDex</h1>
-        <form id="form">
-            <label>Search Pokédex: <input type="text" /></label>
-            <br /><br />
-            <button type="submit">Find Pokemon!</button>
+        <form id="pokeform">
+            <input type="text" id="poke-input" placeholder="Search Pokemon..."/>
+            <input type="submit" value="Search"/>
         </form>
-        <p id="log"></p>
+        <div class="poke-results"></div>
         <div class="grid-container">
             <div class="poke-dex"></div>
+            
         </div>
+        
         <script src="index.js"></script>
     </body>
 </html>
