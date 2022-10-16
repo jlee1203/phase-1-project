@@ -36,6 +36,8 @@ infoButton.textContent = "More Info!";
 infoButton.addEventListener('click', clickEventCallback);
 pokeform.addEventListener('submit', searchPokemon);
 
+
+
 //Appending all the correctly nested elements within each parent node. Not seen in HTML file, the created 
 //elements, used js to apply dom manipulation for insertion of each element.
 pokeDex[0].append(pokeCard);
@@ -81,7 +83,7 @@ pokeCardInfo.append(pokeImage, pokeAttack, pokeDefense, pokeHp, pokeMoves1, poke
 
 // const capitalize = str => str[0].toUpperCase() + str.substr(1);
 
- async function fetchingAllPokemon(){
+ async function fetchingDefaultPokemon(){
     for (i = 1; i < 30; i++){
         const base_URL = `https://pokeapi.co/api/v2/pokemon/${i}`;
         await fetch(base_URL)
@@ -89,17 +91,28 @@ pokeCardInfo.append(pokeImage, pokeAttack, pokeDefense, pokeHp, pokeMoves1, poke
             .then(data => {
                 console.log(data)
                 renderPokemon(data);
-                displayPokemonCard(data);
+                // displayPokemonCard(data);
         }).catch(error => {
             console.log(`My error: ${error}`)
         });
     }
 }
-
-fetchingAllPokemon();
+fetchingDefaultPokemon();
 
 
 //Functions
+function clickEventCallback(){
+    console.log("I was clicked!");
+
+}
+
+function searchPokemon(e){
+    e.preventDefault();
+    let query = document.querySelector("#poke-input").value;
+    pokeform.reset();
+    console.log(query);
+}
+
 function capitalizePokemonName(string){
     return string[0].toUpperCase() + string.slice(1);
 }
@@ -116,18 +129,6 @@ if(data.id < 10){
 };
 
 
-
-function clickEventCallback(){
-    console.log("I was clicked!");
-
-}
-
-function searchPokemon(e){
-    e.preventDefault();
-    
-    console.log(searchPokemon);
-    
-}
 // const capitalize = str => str[0].toUpperCase() + str.substr(1); <- just another way to write the function
 
 
