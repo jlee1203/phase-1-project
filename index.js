@@ -115,10 +115,17 @@ function renderPokemon(data){
         pokeCardInfo[0].style.display = "none";
     }
     
-    function searchPokemon(e){
+    function searchPokemon(e, data){
         e.preventDefault();
         let query = document.querySelector("#poke-input").value;
         pokeform.reset();
+        if(query.toLowerCase() === data.name){
+            document.getElementsByClassName("poke-card").style.display = none;
+            renderPokemon(data) //Only matched pokemon shows up in DOM
+            //change the CSS property of non-matched cards to display: none;
+        } else{
+            return `${query} was not found!`
+        }
         console.log(query);
     }
     
