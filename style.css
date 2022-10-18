@@ -16,6 +16,24 @@ body {
     display: grid;
 } */
 
+.nightModeToggle{
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 5px;
+    border: 2px solid #555;
+}
+
+.nightModeToggle:checked {
+    background: black;
+}
+
+.dark{
+    color: white;
+    background: #444;
+}
+
 .modal-container {
     display:none;
     background-color: rgba(0,0,0,0.5);

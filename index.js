@@ -36,6 +36,7 @@ function renderPokemon(data){
     infoButton.addEventListener('click', clickEventCallback);
     pokeform.addEventListener('input', searchPokemon);
     pokeform.addEventListener('submit', searchPokemon);
+
     
     
     //Appending all the correctly nested elements within each parent node. Not seen in HTML file, the created 
@@ -63,7 +64,7 @@ function renderPokemon(data){
     pokeDefense.textContent = `DEF: ${data.stats[2].base_stat}`;
     pokeHp.textContent = `HP: ${data.stats[0].base_stat}`;
     pokeMoves1.textContent = `Move 1: ${data.moves[0].move.name}`;
-    pokeMoves2.textContent = `Move 2: ${data.moves[1].move.name}`;
+    pokeMoves2.textContent = `Move 2: ${data.moves[5].move.name}`;
     }
     
     
@@ -123,7 +124,7 @@ function renderPokemon(data){
         }
         const query = document.querySelector("#poke-input").value;
         const base_URL = `https://pokeapi.co/api/v2/pokemon/${query.toLowerCase()}`;
-        pokeform.reset();
+        // pokeform.reset();
 
         // Iterate through the pokeCards array and if query is included in the name of the poke-card then display that pokemon card and hide the rest & if query is not empty
         if (query !== ""){
@@ -136,8 +137,12 @@ function renderPokemon(data){
                 }
             }
         }
-        console.log(query);
     }
+    
+    const toggleDark = document.querySelector(".nightModeToggle");
+    toggleDark.addEventListener("change", () => {
+        document.body.classList.toggle('dark');
+    })
     
     function capitalizePokemonName(string){
         return string[0].toUpperCase() + string.slice(1);
@@ -157,14 +162,3 @@ function renderPokemon(data){
     
     // const capitalize = str => str[0].toUpperCase() + str.substr(1); <- just another way to write the function
     
-    
-    //Questions/Ideas/Things to Not Forget
-    // - How to implement search function
-    // - Will I need to use different api endpoints for different info on each pokemon? Like for the pokeImage
-    // - An event for toggling night mode?
-    // - Can I search a pokemon, then "like or catch" instance of, to save to my pokedex?
-    // - Adding in battle stats? (ATT/DEF/STAMINA)
-    // - Pokemon not yet added in, show up as ? After searched, liked to add to pokedex, then name/image pop up.
-    // - Background color changes to match with pokemon type?
-    // - How to use the pokemon api .../1 for each pokemon, to get all the id, name, moves, etc...
-    // and access those in api object to plug in their values into my element variables?
