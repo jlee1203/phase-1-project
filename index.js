@@ -139,7 +139,7 @@ function renderPokemon(data){
         }
     }
     
-    const toggleDark = document.querySelector(".nightModeToggle");
+    const toggleDark = document.querySelector("#nightmode-toggle");
     toggleDark.addEventListener("change", () => {
         document.body.classList.toggle('dark');
     })
