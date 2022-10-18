@@ -34,8 +34,8 @@ function renderPokemon(data){
     
     //Event Listeners
     infoButton.addEventListener('click', clickEventCallback);
+    pokeform.addEventListener('input', searchPokemon);
     pokeform.addEventListener('submit', searchPokemon);
-    
     
     
     //Appending all the correctly nested elements within each parent node. Not seen in HTML file, the created 
@@ -63,7 +63,7 @@ function renderPokemon(data){
     pokeDefense.textContent = `DEF: ${data.stats[2].base_stat}`;
     pokeHp.textContent = `HP: ${data.stats[0].base_stat}`;
     pokeMoves1.textContent = `Move 1: ${data.moves[0].move.name}`;
-    pokeMoves2.textContent = `Move 2: ${data.moves[5].move.name}`;
+    pokeMoves2.textContent = `Move 2: ${data.moves[1].move.name}`;
     }
     
     
@@ -115,16 +115,26 @@ function renderPokemon(data){
         pokeCardInfo[0].style.display = "none";
     }
     
-    function searchPokemon(e, data){
+    async function searchPokemon(e, data){
         e.preventDefault();
-        let query = document.querySelector("#poke-input").value;
+        const pokeCards = document.getElementsByClassName("poke-card");
+        for (let i = 0; i < pokeCards.length; i++){
+            pokeCards[i].style.display = "";
+        }
+        const query = document.querySelector("#poke-input").value;
+        const base_URL = `https://pokeapi.co/api/v2/pokemon/${query.toLowerCase()}`;
         pokeform.reset();
-        if(query.toLowerCase() === data.name){
-            document.getElementsByClassName("poke-card").style.display = none;
-            renderPokemon(data) //Only matched pokemon shows up in DOM
-            //change the CSS property of non-matched cards to display: none;
-        } else{
-            return `${query} was not found!`
+
+        // Iterate through the pokeCards array and if query is included in the name of the poke-card then display that pokemon card and hide the rest & if query is not empty
+        if (query !== ""){
+            for(let i = 0; i < pokeCards.length; i++){
+                const pokeName = pokeCards[i].querySelector("#poke-name").textContent;
+                if (pokeName.toLowerCase().includes(query.toLowerCase())){
+                    pokeCards[i].style.display = "";
+                } else {
+                    pokeCards[i].style.display = "none";
+                }
+            }
         }
         console.log(query);
     }
