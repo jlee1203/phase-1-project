@@ -19,7 +19,9 @@ weight, with buttons for additional information.
 ```https://pokeapi.co/api/v2/pokemon```
 ```https://pokeapi.co/api/v2/pokemon/1```
 
-
+## Additional Components
+- [Blog Post](https://medium.com/@j.lee1203/looping-through-fetch-requests-to-access-the-nested-objects-b5708eabe728)
+- [Video](https://youtu.be/0PXcLytfz2Q)
 
 
 
